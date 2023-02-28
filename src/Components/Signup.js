@@ -14,14 +14,18 @@ export default class Signup extends Component {
             username: '',
             email: '',
             password: '',
+            file: null,
         }
     }
     handleClick = () => {
         // console.log(this.state.email, this.state.password);
-        this.props.signup(this.state.email, this.state.password);
+        this.props.signup(this.state.email, this.state.password, this.state.file, this.state.username);
     }
     handleGoogleClick = () => {
-        this.props.signupWithGoogle();
+        this.props.signupWithGoogle('signup');
+    }
+    handleChange = (file) => {
+      this.setState({file: file});
     }
   render() {
     return (
@@ -35,6 +39,7 @@ export default class Signup extends Component {
             <TextField label="Email" variant="outlined" fullWidth={true} onChange={(e) => this.setState({email: e.target.value})}/>
             <TextField label="Full Name" variant="outlined" fullWidth={true} onChange={(e) => this.setState({username: e.target.value})}/>
             <TextField label="Password" type="password" variant="outlined" fullWidth={true} onChange={(e) => this.setState({password: e.target.value})}/>
+            <input type="file" placeholder="Select your image" onChange={(e) => this.handleChange(e.target.files[0])} accept="image/*"/>
           </CardContent>
           <CardActions>
             <Button color="primary" fullWidth={true} variant="contained" onClick={this.handleClick}> Sign Up </Button>

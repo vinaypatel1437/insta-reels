@@ -54,8 +54,9 @@ export default class VideoUpload extends Component {
                 comments: [],
                 pId: uid,
                 uUrl: downloadURL,
-                uName: this.state.user.displayName ? this.state.user.displayName: this.state.user.email,
-                uProfileImage: this.state.user.photoURL ? this.state.user.photoURL : 'https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg',
+                uId: this.state.user.userId,
+                uName: this.state.user.fullName ? this.state.user.fullName: this.state.user.email,
+                uProfileImage: this.state.user.profileUrl ? this.state.user.profileUrl : 'https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg',
                 createdAt: Date.now(),
             }
             addDoc(database.posts, obj).then((refernce)=> {

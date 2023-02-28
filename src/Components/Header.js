@@ -6,6 +6,16 @@ import LogoImg from "../images/insta-logo.png";
 import { Link } from "react-router-dom";
 
 export default class Header extends Component {
+  constructor() {
+    super()
+    this.state = {
+      user: {},
+    }
+  }
+    componentDidMount() {
+      const tempUser = JSON.parse(localStorage.getItem("users"));
+      this.setState({user: tempUser});
+    }
     render() {
     return (
       <div className="header">
@@ -14,7 +24,7 @@ export default class Header extends Component {
         </Link>
         <div className="header-actions">
           <Link to="/profile">
-            <img src={ProfileImage} alt="" className="profile-image" />
+            <img src={this.state.user.profileUrl ? this.state.user.profileUrl: ProfileImage} alt="" className="profile-image" />
           </Link>
           <Button className="Logout" variant="outlined" color="error" onClick={this.props.signout}>
             Logout
