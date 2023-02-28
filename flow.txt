@@ -1,0 +1,18 @@
+                                                        index.js
+                                                           |
+                                                        App.js (Authentication and routes) + firebase (authentication, firestore, storage)
+                                                           |
+                            ____________________________________________________________________________________________________________
+                            |                               |                 |              |                   |                       |
+                        Header                          Footer              Profile        Main                Login                    Signup      
+                                                                                            |
+                                                                                        ___________________________
+                                                                                        |                           |
+                                                                                        Posts                       VideoUpload
+                                                                                    
+                                                                                                                                                  
+
+Firebase :- Non Structured database. (JSON object)
+authentication :- Login / Signup and Google Signup
+Firestore :- It is our database. In this the data is stored in JSON object.
+Storage :- Video upload, Photo upload. To store the video and photo we use storage.

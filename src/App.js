@@ -1,19 +1,19 @@
 import "./App.css";
 import React, { Component } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { database, storage, fstore } from "./firebase";
+import { database, storage } from "./firebase";
 import { addDoc, query, where, getDocs } from "firebase/firestore";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
+  createUserWithEmailAndPassword, // to create user with email and password.
+  getAuth,                       // It is use to intitialize authentication in firebase.
+  signInWithEmailAndPassword,    // Sign in using email and password.
+  GoogleAuthProvider,            // Google Auth Provider. We can login using google using this.
+  signInWithPopup,                // To this function we provide google auth and getAuth object. To signin using google.
+  signOut,                       // Sign out
+} from "firebase/auth";  // It is giving us the authentication service using firebase.
 import "./firebase"; // It is initializing the firebase for our App.
 import Main from "./Components/Main";
 import Profile from "./Components/Profile";
@@ -21,16 +21,12 @@ import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import PrivateRoute from "./Components/PrivateRoute";
 
-const provider = new GoogleAuthProvider();
-const auth = getAuth();
+const provider = new GoogleAuthProvider();  // Here we are making a Object provider from GoogleAuthProvider.
+const auth = getAuth();                     // Here we have created a auth object using getAuth
 class App extends Component {
-  // constructor() {
-  //   super()
-  //   // this.state = {
-  //   //   user: {},
-  //   // }
-  // }
+
   signup = (email, password, file, name) => {
+    // Here we are creating a user with email and password
     createUserWithEmailAndPassword(auth, email, password)
       .then((res) => {
         console.log(res);
@@ -86,6 +82,7 @@ class App extends Component {
       });
   };
   login = (email, password) => {
+    // Here we are loging in using email and password
     signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
         console.log(res.user);
@@ -107,6 +104,7 @@ class App extends Component {
       });
   };
   signout = () => {
+    // here we are logging out from the page.
     signOut(auth)
       .then((res) => {
         window.location.href = "/login";
@@ -117,6 +115,7 @@ class App extends Component {
       });
   };
   signupWithGoogle = (type) => {
+    // Here we are doing auth using google account 
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
